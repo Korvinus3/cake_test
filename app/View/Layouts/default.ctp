@@ -32,14 +32,42 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
+
+		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+		echo $this->Html->script([
+			'https://code.jquery.com/jquery-1.12.4.min.js',
+			'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+		]);
+
 		echo $this->fetch('script');
 	?>
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'https://cakephp.org'); ?></h1>
-		</div>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<?php
+								echo $this->Html->link(
+									'Employees', array('controller' => 'employees', 'action' => 'index')
+								);
+							?>
+						</li>
+						<li>
+							<?php
+								echo $this->Html->link(
+									'Departments', array('controller' => 'departments', 'action' => 'index')
+								);
+							?>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+
 		<div id="content">
 
 			<?php echo $this->Flash->render(); ?>
@@ -58,6 +86,5 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</p>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
